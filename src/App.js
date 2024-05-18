@@ -1,10 +1,20 @@
 //import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css';
-//import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
-import TextForms from './components/TextForms';
+import TextForm from './components/TextForm';
 import Alert from './components/Alert';
+import Contact from './components/Contact';
+
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 
 function App() {
@@ -25,25 +35,37 @@ setAlert(null);
       setMode('dark');
       document.body.style.backgroundColor='#495057';
       showAlert("Dark mode has been enabled","Success ");
+      document.title='TextUtils- Dark Mode';
       }
       else{
       setMode('light');
       document.body.style.backgroundColor='white';
       showAlert("Light mode has been enabled","Success ");
+      document.title='TextUtils- Light Mode';
       }
   }
   
   return (
     <>
-
+<Router>
 <Navbar title="Word Analyzer"mode={mode} toggleMode={toggleMode}/>
 <Alert alert={alert}/>
 <div className="container my-3">
-<TextForms showAlert={showAlert} heading="Enter the text below to analyze" mode={mode}/>
-{/*<About/>*/}
+<Switch>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/">
+          <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/>
+          </Route>
+          <Route exact path="/contact">
+            <Contact/>
+          </Route>
+</Switch>
+  {/* <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/> */}
+{/* <About/> */}
 </div>
-
-
+</Router>
 </>  
   );
 }
