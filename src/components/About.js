@@ -67,6 +67,7 @@ import React, { useState } from 'react'
         <button type="button" className='btn btn-primary my-2' onClick={toggleStyle}>{btntext}</button>
         </div>
         </div>
+        
     )
     }
 

@@ -12,7 +12,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+ //Link
 } from "react-router-dom";
 
 
@@ -33,7 +33,7 @@ setAlert(null);
   const toggleMode=()=>{
     if(mode==='light'){
       setMode('dark');
-      document.body.style.backgroundColor='#495057';
+      document.body.style.backgroundColor='#2b2f32';
       showAlert("Dark mode has been enabled","Success ");
       document.title='TextUtils- Dark Mode';
       }
@@ -53,13 +53,13 @@ setAlert(null);
 <div className="container my-3">
 <Switch>
           <Route exact path="/about">
-            <About />
+            <About mode={mode} />
           </Route>
           <Route exact path="/">
           <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/>
           </Route>
           <Route exact path="/contact">
-            <Contact/>
+            <Contact heading="HEY" mode={mode}/>
           </Route>
 </Switch>
   {/* <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/> */}

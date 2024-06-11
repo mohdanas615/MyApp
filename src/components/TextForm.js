@@ -33,6 +33,18 @@ export default function Textforms(props) {
       setText(newText.join(' ')) ;
       props.showAlert("Extra Spaces Removed","Success");
     }
+    const handleTextAnalyze=()=>{
+      const obj={}
+      for(let x of text){
+        if(obj[x])
+            obj[x]+=1;
+        else
+            obj[x]=1; 
+    }
+   console.log(obj);
+   text.length===0 ? props.showAlert("Type something to Analyze","Warning"): props.showAlert("Text Analyzed","Success")
+    }
+    
     const[text, setText]=useState('');
    //setText("Write here");
   return (
@@ -48,6 +60,7 @@ export default function Textforms(props) {
   <div className="btn btn-primary mx-1"onClick={handleCopy}>Copy Text</div>
   <div className="btn btn-primary mx-0"onClick={handleExtraSpaces}>Remove Extra Spaces</div>
   <div className="btn btn-primary mx-1"onClick={handleClearClick}>Clear</div>
+  <div className="btn btn-primary mx-1"onClick={handleTextAnalyze}>Analyze Text</div>
     </div>
   </div>
     <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
@@ -56,6 +69,7 @@ export default function Textforms(props) {
       <p>{text.length===0 ? 0:0.008*text.split(" ").length}  minutes to read the text</p>
       <h2>Preview</h2>
       <p>{text.length>0 ? text:'Enter something in the textbox to preview it here'}</p>
+     
     </div>
     </>
   )
